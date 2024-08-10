@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import profile from "../images/profile.png";
 import Pagination from "./Pagination";
-import { HiMiniXMark } from "react-icons/hi2";
-import { TiTick } from "react-icons/ti";
-
+import axios from "axios";
 
 const AdminHome = () => {
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhIiwicm9sZSI6InR5cGUtSSIsImlhdCI6MTcyMzI4MTM0NiwiZXhwIjoxNzIzODg2MTQ2fQ.FBhiP7LcHsi4aca7nVpjnupwruTvaVc9SX6QJoGCOPQ"; // Replace with your token
   const headers = [
     "Name",
+    "Employee-Type",
     "Leave-Type",
     "From",
     "To",
@@ -17,23 +17,7 @@ const AdminHome = () => {
     "Action",
   ];
 
-  const initialData = [
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    // Add more rows as needed
-  ];
-
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 6; // Adjust as needed
   const totalPages = Math.ceil(data.length / rowsPerPage);
@@ -42,8 +26,62 @@ const AdminHome = () => {
     setCurrentPage(page);
   };
 
-  const handleRemoveRow = (index) => {
-    setData((prevData) => prevData.filter((_, i) => i !== index));
+  const handleAccept = async(id) =>{
+
+    await axios.post('http://localhost:5000/leave/approve',  
+      {
+        id : id
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+
+    getData();
+  }
+
+  const handleReject = async(id) =>{
+
+    await axios.post('http://localhost:5000/leave/deny',  
+      {
+        id : id
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+
+    getData();
+
+
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/leave/getLeaves', {
+        headers: {
+          'Authorization': `Bearer ${token}`, 
+          'Content-Type': 'application/json'
+        }
+      });
+
+      console.log(response.data.data)
+      
+      const filteredData = response.data.data.filter(record => record.status === 'Pending');
+      setData(filteredData);
+      console.log(filteredData)
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   const startIndex = (currentPage - 1) * rowsPerPage;
@@ -65,7 +103,7 @@ const AdminHome = () => {
           <div className="w-full flex flex-col p-3 bg-slate-100 mb-5 border-slate-950 rounded-lg">
             <h2 className="font-semibold text-xl mb-3">Leaves</h2>
             <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-              <div className="flex-1 min-w-[200px] md:min-w-[150px] lg:w-1/2 xl:w-1/4 h-auto rounded-lg bg-[#E7FBE6] flex flex-col md:flex-row justify-center items-center gap-4 p-4">
+            <div className="flex-1 min-w-[200px] md:min-w-[150px] lg:w-1/2 xl:w-1/4 h-auto rounded-lg bg-[#E7FBE6] flex flex-col md:flex-row justify-center items-center gap-4 p-4">
                 <h2 className="font-semibold text-2xl md:text-3xl">28</h2>
                 <h2 className="font-semibold text-lg md:text-xl text-center">
                   Total Leaves <br className="md:hidden" /> Requested
@@ -92,6 +130,7 @@ const AdminHome = () => {
                   Percentage of Leave <br className="md:hidden" /> Today
                 </h2>
               </div>
+            
             </div>
           </div>
 
@@ -113,30 +152,16 @@ const AdminHome = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {dataToDisplay.map((row, rowIndex) => (
                     <tr key={rowIndex}>
-                      {row.map((cell, cellIndex) => (
-                        <td
-                          key={cellIndex}
-                          className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >
-                          {cell}
-                        </td>
-                      ))}
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.username}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.empType}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.leaveType}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.from}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.to}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.numberOfDays}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.status}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex flex-row gap-4">
-                      <button
-                          className="text-green-500 hover:text-green-700 text-2xl"
-                          
-                        >
-                          
-                          ☑
-                        </button>
-                        <button
-                          className="text-red-500 hover:text-red-700 text-2xl"
-                          
-                        >
-                          
-                          ☒
-                        </button>
-                        
+                        <button className="text-green-500 hover:text-green-700 text-2xl" onClick={()=>{handleAccept(row._id)}}>☑</button>
+                        <button className="text-red-500 hover:text-red-700 text-2xl" onClick={()=>{handleReject(row._id)}}>☒</button>
                       </td>
                     </tr>
                   ))}
