@@ -17,7 +17,29 @@ const AdminHome = () => {
     "Action",
   ];
 
-  const [data, setData] = useState([]);
+  const data = [
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
+    // Add more data rows as needed
+  ];
+
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 6; // Adjust as needed
   const totalPages = Math.ceil(data.length / rowsPerPage);
