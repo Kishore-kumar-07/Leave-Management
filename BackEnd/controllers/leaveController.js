@@ -49,4 +49,13 @@ const getLeaves = async(req, res) => {
     }
 }
 
-module.exports = {applyLeave,approved,denied,getLeaves}
+const getLeaveByUser = async(req, res) => {
+    try{
+        const leave = await LeaveModel.find({username: req.body.username})
+        return res.json({error: false, data: leave})
+    } catch(err){
+        return res.status(500).json({error: true, message: err.message})
+    }
+}
+
+module.exports = {applyLeave,approved,denied,getLeaves,getLeaveByUser}

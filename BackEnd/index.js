@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cron = require('node-cron');
 const dotenv = require('dotenv')
 const userRoutes = require('./routes/userRoutes')
 const leaveRoutes = require('./routes/leaveRoutes')
+const {userModel} = require('./models/userSchema')
 
 const app = express()
 app.use(express.json())
@@ -15,6 +17,19 @@ dotenv.config('./env')
 
 app.use('/users',userRoutes)
 app.use('/leave',leaveRoutes)
+
+cron.schedule('* * * * *', () => {
+    const now = new Date();
+    if (now.getDate() === 1) {
+        console.log("Resetting leave data");
+        resetData();
+    }
+});
+
+const resetData = async() => {
+    const result = await userModel.updateMany({}, { $set: { leaveTaken: 0 } });
+    console.log("data reseted");
+}
 
 app.get("/test", (req, res)=>{
     try{
