@@ -5,11 +5,9 @@ import ViewSide from './components/viewSide/viewSide'
 function EmployeeHomePage() {
   return (
     <>
-    <div className={` h-screen w-screen flex relative`}>
+    <div className={`w-screen flex relative `}>
       <Nav/> 
-   
       <ViewSide/> 
-
    </div>
     </>
     

@@ -8,15 +8,16 @@ function App() {
 
   const route = createBrowserRouter([
    
-   
     {
       path:'/Admin',
       element:<AdminHome/>
     },
     {
       path:'/Employee',
-      element:<EmployeeHomePage/>
-    }
+      element:<EmployeeHomePage/>,
+    },
+
+
   ])
 
   return (

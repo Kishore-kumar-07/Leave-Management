@@ -105,7 +105,7 @@ function Table() {
 
   return (
     <>
-      <div className='h-screen overflow-y-hidden overflow-hidden w-[98%] my-3 p-5 bg-slate-100 rounded-lg'>
+      <div className='  w-[98%] my-3 p-5 bg-slate-100 rounded-lg'>
         <h1 className='text-xl font-semibold mb-2'>
           Leave Log
         </h1>

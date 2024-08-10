@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 import axios from "axios";
 
 const AdminHome = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhIiwicm9sZSI6InR5cGUtSSIsImlhdCI6MTcyMzI4MTM0NiwiZXhwIjoxNzIzODg2MTQ2fQ.FBhiP7LcHsi4aca7nVpjnupwruTvaVc9SX6QJoGCOPQ"; // Replace with your token
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhIiwicm9sZSI6InR5cGUtSSIsImlhdCI6MTcyMzI5NDA0MywiZXhwIjoxNzIzODk4ODQzfQ.Hj7RcI6VAkWylWET3omcIZUgwlDf8Ffpx9pBKvdAGZs"; // Replace with your token
   const headers = [
     "Name",
     "Employee-Type",
@@ -17,29 +17,7 @@ const AdminHome = () => {
     "Action",
   ];
 
-  const data = [
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Declined"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    ["Lingesh", "Sick Leave", "10/10/2024", "11/10/2024", "2 days", "Approved"],
-    // Add more data rows as needed
-  ];
-
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 6; // Adjust as needed
   const totalPages = Math.ceil(data.length / rowsPerPage);

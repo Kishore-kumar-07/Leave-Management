@@ -3,9 +3,7 @@ import Details from './Details';
 import Table from './Table';
 import Title from './Title';
 import PopUp from './components/PopUp';
-// import { useState } from 'react';
 
-// import {Scrollbars} from 'react-custom-scrollbars'
 
 const ViewSide=()=> {
  
@@ -16,10 +14,10 @@ const ViewSide=()=> {
    }
 
   return (
-    <div className='h-screen w-[85%] bg-[#FFFFFD] flex  flex-col  justify-center items-center'>
+    <div className=' w-[100%]  bg-[#FFFFFD] flex  flex-col  justify-center items-center overflow-hidden'>
       <Title/>
      <Details/>
-     <div className='flex justify-end w-[90%] mt-2 '>
+     <div className='flex justify-end w-[90%] '>
         <button onClick={toggle} className='bg-black text-white py-[1vh] px-6 rounded-lg shadow-md shadow-slate-200 hover:bg-slate-600'>
           open
         </button>
