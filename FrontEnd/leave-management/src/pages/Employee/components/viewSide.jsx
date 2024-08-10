@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Scrollbars} from 'react-custom-scrollbars'
+// import {Scrollbars} from 'react-custom-scrollbars'
 
 function viewSide() {
    
@@ -16,7 +16,7 @@ function viewSide() {
         </div>)}
      </div>
         </div>
-    <Scrollbars style={{width: "99%", height: "300%" ,}}>
+    
     <div className='h-screen overflow-y-hidden overflow-hidden w-[100%]'>
      <div className='flex flex-wrap flex-col'>
         {temp1.map((val,index)=><div key={index} className='  flex justify-center items-center bg-white ml-5 my-2 p-10 rounded-md'>
@@ -24,7 +24,7 @@ function viewSide() {
         </div>)}
      </div>
      </div>
-    </Scrollbars>
+    
     
    
     </div>

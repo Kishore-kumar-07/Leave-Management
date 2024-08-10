@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function AdminHomePage() {
   return (
    <>
-  <div className='bg-[#000000] h-screen w-screen'>
-   
+   <div>
+   iurbv
 
    </div>
    </>
