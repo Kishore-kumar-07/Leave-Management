@@ -1,5 +1,5 @@
 import './App.css';
-import EmployeeHomePage from './pages/Employee/employeeHomePage';
+import EmployeeHomePage from './pages/Employee/EmployeeHome';
 import AdminHome from './pages/Admin/AdminHome';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 

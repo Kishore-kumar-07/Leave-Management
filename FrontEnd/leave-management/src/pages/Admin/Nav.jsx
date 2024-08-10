@@ -16,7 +16,6 @@ const Nav = () => {
         <li className="px-4 py-2 hover:bg-gray-700">
           <Link to="/about">Profile</Link>
         </li>
-        
       </ul>
     </nav>
   )
