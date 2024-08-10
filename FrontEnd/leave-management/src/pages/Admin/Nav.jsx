@@ -20,6 +20,8 @@ const Nav = () => {
           <p className="text-md font-semibold">Profile</p>
         </Link>
       </div>
+      
+    
     </div>
   )
 }
