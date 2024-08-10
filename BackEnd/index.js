@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(cors());
-
+   
 dotenv.config('./env')
 
 app.use('/users',userRoutes)
