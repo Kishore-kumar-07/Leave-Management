@@ -4,6 +4,7 @@ import AdminHome from './pages/Admin/AdminHome';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Login from './pages/User/Login'
 import Signup from './pages/User/Signup';
+import Profile from './pages/Employee/Profile';
 
 
 
@@ -30,6 +31,10 @@ function App() {
     {
       path:'/Employee/:username',
       element:<EmployeeHomePage/>
+    },
+    {
+      path:'/EmpProfile/:username',
+      element:<Profile />
     },
   ])
 

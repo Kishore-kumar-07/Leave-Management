@@ -11,29 +11,10 @@ function EmployeeHomePage() {
   const { username } = useParams();
   console.log(username);
 
-  useEffect(()=>{
-    getData();
-  },[])
-
-  const getData = async() =>{
-    const data = await axios.post('http://localhost:5000/leave/getLeaveByUser',
-      {
-        username
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    console.log(data.data);
-
-  }
-
   return (
     <>
     <div className={`w-screen flex relative `}>
-      <Nav/> 
+      <Nav username = {username} /> 
    
       <ViewSide username = {username}/> 
 
