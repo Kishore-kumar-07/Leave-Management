@@ -16,11 +16,15 @@ function EmployeeHomePage() {
 
   return (
     <>
-    <div className={` h-screen w-screen flex relative`}>
+    <div className={`w-screen flex relative `}>
       <Nav/> 
+<<<<<<< HEAD
    
       <ViewSide username = {username}/> 
 
+=======
+      <ViewSide/> 
+>>>>>>> 6b2e1dd700d576153a6bd3412ed8ab7991367c82
    </div>
     </>
     
