@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Nav() {
+function Nav(props) {
   return (
     <nav className="w-64 h-screen bg-gray-800 text-white">
     <div className="p-4">

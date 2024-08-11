@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Title() {
+function Title(props) {
   return (
     
   <>
@@ -11,7 +11,7 @@ function Title() {
         Employee Dashboard
       </h1>
     <h1 className='text-xl font-semibold'>
-        Kishore Kumar K
+        {props.username}
     </h1>
 
     </div>

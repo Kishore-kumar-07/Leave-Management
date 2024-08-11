@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import {jwtDecode} from "jwt-decode"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,9 +27,24 @@ const Login = () => {
             },
           }
         );
-        console.log(res);
+        console.log(res.status)
+        console.log(res.data.message.token);
         if (res.status === 200) {
-          navigate("/Employee");
+          document.cookie = `token=${res.data.message.token}`;  
+          
+          console.log(document.cookie)
+
+          const decodedToken = jwtDecode(res.data.message.token);
+          console.log(decodedToken);
+
+          if (decodedToken.role === "admin") {
+            navigate("/Admin"); // Redirect to admin page
+          } else if (decodedToken.role !== 'admin') {
+            navigate(`/Employee/${decodedToken.username}`); // Redirect to employee page with ID
+          } else {
+            navigate("/"); // Redirect to home if role is unknown
+          }
+
         
         } else if (res.status === 401) {
           setError("Incorrect password");

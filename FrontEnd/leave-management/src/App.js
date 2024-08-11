@@ -29,7 +29,7 @@ function App() {
       element:<AdminHome/>
     },
     {
-      path:'/Employee',
+      path:'/Employee/:username',
       element:<EmployeeHomePage/>
     }
   ])
