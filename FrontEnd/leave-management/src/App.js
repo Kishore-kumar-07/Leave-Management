@@ -29,8 +29,8 @@ function App() {
     },
     {
       path:'/Employee/:username',
-      element:<EmployeeHomePage/>
-    }
+      element:<EmployeeHomePage/>,
+    },
   ])
 
   return (
