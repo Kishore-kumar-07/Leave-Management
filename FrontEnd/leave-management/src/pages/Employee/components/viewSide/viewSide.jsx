@@ -14,12 +14,12 @@ const ViewSide=()=> {
    }
 
   return (
-    <div className=' w-[100%]  bg-[#FFFFFD] flex  flex-col  justify-center items-center overflow-hidden'>
+    <div className=' w-[100%] bg-[#FFFFFD] flex  flex-col  justify-center items-center overflow-hidden'>
       <Title/>
      <Details/>
      <div className='flex justify-end w-[90%] '>
-        <button onClick={toggle} className='bg-black text-white py-[1vh] px-6 rounded-lg shadow-md shadow-slate-200 hover:bg-slate-600'>
-          open
+        <button onClick={toggle} className='bg-black text-white mt-2 py-[1vh] px-6 rounded-lg shadow-md shadow-slate-200 hover:bg-slate-600'>
+          apply
         </button>
       </div>
       <Table/>
