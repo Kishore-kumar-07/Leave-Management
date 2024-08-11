@@ -10,10 +10,6 @@ function EmployeeHomePage() {
   const { username } = useParams();
   console.log(username);
 
-  // useEffect(()=>{
-  //   getData();
-  // },[])
-
   return (
     <>
     <div className={`w-screen flex relative `}>

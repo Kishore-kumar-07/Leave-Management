@@ -7,25 +7,6 @@ function Table() {
     ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
     ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Pendiadghsfih"],
     ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "asfaesrhrsaZ"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Pendiadghsfih"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "asfaesrhrsaZ"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Pendiadghsfih"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "asfaesrhrsaZ"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Approved"],
-    ["kishore", "Sick Leave", "10/10/2024", "10/10/2024", "1 day", "Pendiadghsfih"],
-    
-    // Add more data as needed
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
