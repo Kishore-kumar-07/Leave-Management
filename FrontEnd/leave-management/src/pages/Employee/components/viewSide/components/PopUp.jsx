@@ -145,7 +145,7 @@ console.log("done")
     </label>
     <textarea onChange={(val)=>setReason(val.target.value)} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reason" type="text" placeholder="Enter the reason" />
     </div>
-    <div className='flex flex-col'>
+    {/* <div className='flex flex-col'>
       <h1>
       {formatDisplayDate(fromDate)}
       </h1>
@@ -157,7 +157,7 @@ console.log("done")
       </h1>
     
      
-      </div>
+      </div> */}
   
     <button onClick={applyLeave} className='bg-blue-500 py-3 px-5 rounded-lg shadow-sm shadow-black '>
       Submit

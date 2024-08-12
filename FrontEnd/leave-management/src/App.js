@@ -5,6 +5,7 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Login from './pages/User/Login'
 import Signup from './pages/User/Signup';
 import Profile from './pages/Employee/Profile';
+import AdmProfile from './pages/Admin/AdmProfile';
 
 
 
@@ -35,6 +36,10 @@ function App() {
     {
       path:'/EmpProfile/:username',
       element:<Profile />
+    },
+    {
+      path:'/AdProfile/:username',
+      element:<AdmProfile />
     },
   ])
 

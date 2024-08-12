@@ -7,7 +7,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-slate-100  h-full w-[7rem] rounded-xl flex flex-col items-center gap-y-[3rem]  py-[2rem]">
@@ -15,7 +15,7 @@ const Nav = () => {
           <MdDashboard className="text-3xl text-slate-900"/>
           <p className="text-md font-semibold">Dashboard</p>
         </Link>
-        <Link to="/calllog" className="icon-a icon-hover flex items-center justify-center flex-col gap-y-2">
+        <Link to={`/AdProfile/${props.username}`} className="icon-a icon-hover flex items-center justify-center flex-col gap-y-2">
           <FaUserAlt  className="text-3xl text-slate-900"/>
           <p className="text-md font-semibold">Profile</p>
         </Link>

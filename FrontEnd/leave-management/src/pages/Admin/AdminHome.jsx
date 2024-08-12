@@ -97,7 +97,7 @@ const AdminHome = () => {
 
   return (
     <div className="flex w-screen h-screen">
-      <Nav />
+      <Nav username="Admin" />
       <main className="flex flex-col pl-5 pr-5 pt-2 w-screen h-screen">
         <div className="w-full flex justify-between h-12 mb-5 items-center pl-5 pr-5 bg-slate-100 border-slate-950 rounded-lg">
           <h2 className="font-semibold text-xl">Dashboard</h2>
