@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cron = require('node-cron');
 const dotenv = require('dotenv')
-const userRoutes = require('./routes/userRoutes')
-const leaveRoutes = require('./routes/leaveRoutes')
-const {userModel} = require('./models/userSchema')
+const EmpRout = require('./routes/employeeRout')
+const LeaveRout = require('./routes/leaveRout')
+const PermissionRout = require('./routes/permissionRout')
 
 const app = express()
 app.use(express.json())
@@ -15,20 +15,19 @@ app.use(cors());
    
 dotenv.config('./env')
 
-app.use('/users',userRoutes)
-app.use('/leave',leaveRoutes)
+app.use('/emp',EmpRout)
+app.use('/leave',LeaveRout)
+app.use('/permission',PermissionRout)
 
 cron.schedule('* * * * *', () => {
     const now = new Date();
     if (now.getDate() === 1) {
-        console.log("Resetting leave data");
         resetData();
     }
 });
 
 const resetData = async() => {
-    const result = await userModel.updateMany({}, { $set: { leaveTaken: 0 } });
-    console.log("data reseted");
+    console.log('reset')
 }
 
 app.get("/test", (req, res)=>{

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { userModel } = require('../models/userSchema');
+const { EmpModel } = require('../models/employeeSchema');
 
 const checkUser = (req, res, next) => {
     try{
@@ -12,11 +12,11 @@ const checkUser = (req, res, next) => {
             if (err) {
                 return res.status(401).json({ error: true, message: 'invalid token' });
             }
-            const doc = await userModel.findOne({ username: user.username });
+            const doc = await EmpModel.findOne({ empId: user.empId });
             if(!doc){
                 return res.status(400).json({error:true,message:'invalid user'});
             }
-            req.user = {username: doc.username, role:doc.role};
+            req.user = {empId: doc.empId, role:doc.role};
             next();
         })
     }

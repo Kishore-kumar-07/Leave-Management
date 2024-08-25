@@ -1,61 +1,79 @@
-const {LeaveModel} = require('../models/leaveSchema')
-const {userModel} = require('../models/userSchema')
+const { LeaveModel } = require('../models/leaveSchema'); // Replace with the correct path
 
-const applyLeave = async(req, res) => {
-    try{
-        const {username, empType, leaveType, from, to, numberOfDays, reason } = req.body;
-        const user = await userModel.findOne({username})
-        if(!user){
-            return res.status(404).json({error: true, message: 'User not found'})
+// Apply for leave
+const ApplyLeave = async (req, res) => {
+    try {
+        const { empId, leaveType, from, to, numberOfDays, reason } = req.body;
+
+        const newLeave = new LeaveModel({
+            empId,
+            leaveType,
+            from,
+            to,
+            numberOfDays,
+            reason
+        });
+
+        await newLeave.save();
+
+        res.status(201).json({ message: 'Leave applied successfully', leave: newLeave });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+}
+
+// Accept leave
+const AcceptLeave = async (req, res) => {
+    try {
+        const { leaveId } = req.body;
+
+        const leave = await LeaveModel.findById(leaveId);
+        if (!leave) {
+            return res.status(404).json({ message: 'Leave not found' });
         }
-        else{
-            await LeaveModel.create({username, empType, leaveType, from, to, numberOfDays, reason})
-            res.status(201).json({error: false, message: 'Leave application submitted successfully'})
+
+        leave.status = 'Approved';
+        await leave.save();
+
+        res.status(200).json({ message: 'Leave approved successfully', leave });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+}
+
+// Deny leave
+const DenyLeave = async (req, res) => {
+    try {
+        const { leaveId } = req.body;
+
+        const leave = await LeaveModel.findById(leaveId);
+        if (!leave) {
+            return res.status(404).json({ message: 'Leave not found' });
         }
-    } catch(err){
-        return res.status(500).json({error: true, message: err.message})
+
+        leave.status = 'Denied';
+        await leave.save();
+
+        res.status(200).json({ message: 'Leave denied successfully', leave });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
     }
 }
 
-const approved = async(req, res) => {
-    try{
-        const data = await LeaveModel.findOne({_id: req.body.id})
-        console.log(data.username)
-        const user = await userModel.findOne({username: data.username})
-        console.log(user)
-        const number = await userModel.findByIdAndUpdate(user._id, {leaveTaken: user.leaveTaken+1})
-        const leave = await LeaveModel.findByIdAndUpdate(req.body.id, {status: 'Approved'})
-        return res.json({error: false, message: "leave approved"})
-    } catch(err){
-        return res.status(500).json({error: true, message: err.message})
+// Get leaves taken by a particular employee
+const GetLeave = async (req, res) => {
+    try {
+        const { empId } = req.body;
+
+        const leaves = await LeaveModel.find({ empId });
+        if (!leaves.length) {
+            return res.status(404).json({ message: 'No leaves found for this employee' });
+        }
+
+        res.status(200).json(leaves);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
     }
 }
 
-const denied = async(req, res) => {
-    try{
-        const leave = await LeaveModel.findByIdAndUpdate(req.body.id, {status: 'Denied'})
-        return res.json({error: false, message: "leave denied"})
-    } catch(err){
-        return res.status(500).json({error: true, message: err.message})
-    }
-}
-
-const getLeaves = async(req, res) => {
-    try{
-        const leaves = await LeaveModel.find()
-        return res.json({error: false, data: leaves})
-    } catch(err){
-        return res.status(500).json({error: true, message: err.message})
-    }
-}
-
-const getLeaveByUser = async(req, res) => {
-    try{
-        const leave = await LeaveModel.find({username: req.body.username})
-        return res.json({error: false, data: leave})
-    } catch(err){
-        return res.status(500).json({error: true, message: err.message})
-    }
-}
-
-module.exports = {applyLeave,approved,denied,getLeaves,getLeaveByUser}
+module.exports = {ApplyLeave,AcceptLeave,DenyLeave,GetLeave}

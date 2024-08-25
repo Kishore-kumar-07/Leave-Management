@@ -1,27 +1,22 @@
-const mongoose = require('mongoose');
+const db = require('mongoose')
 
-const schema = new mongoose.Schema(
+const schema = new db.Schema(
     {
-        username: {
-            type: String,
-            required: true,
-        },
-        empType: {
-            type: String,
-            required: true,
-            enum: ['type-I', 'type-II']
-        },
-        leaveType: {
-            type: String,
-            required: true,
-            enum: ['type-I', 'type-II']
-        },
-        from: {
+        empId: {
             type: String,
             required: true
         },
-        to: {
+        leaveType: {
             type: String,
+            enum: ['Casual Leave', 'Privelage Leave', 'Paternity Leave'],
+            default: 'Casual Leave'
+        },
+        from: {
+            type: Object,
+            required: true
+        },
+        to: {
+            type: Object,
             required: true
         },
         numberOfDays: {
@@ -30,7 +25,8 @@ const schema = new mongoose.Schema(
         },
         reason: {
             type: String,
-            required: true
+            enum: ['Personal', 'Medical', 'Peternity', 'Family Function'],
+            default: 'Personal'
         },
         status: {
             type: String,
@@ -44,5 +40,5 @@ const schema = new mongoose.Schema(
     }
 );
 
-const LeaveModel = mongoose.model('leave',schema)
-module.exports={LeaveModel};
+const LeaveModel = db.model('leave', schema)
+module.exports = { LeaveModel }
